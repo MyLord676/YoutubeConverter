@@ -1,6 +1,6 @@
 import telebot
 import yaml
-from getRequest import convertToMP3
+from youtube import convertToMP3
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         if url:
             try:
                 mp3 = convertToMP3(url)
-                bot.send_message(message.chat.id, mp3)
+                bot.send_audio(chat_id=message.chat.id, audio=open(mp3, 'rb'))
             except Exception as e:
                 print(e)
                 bot.send_message(message.chat.id,
